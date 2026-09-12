@@ -178,14 +178,24 @@ label.field {
 .toggle label {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  min-width: 72px;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 13px;
   font-weight: 650;
 }
 
-.toggle input { accent-color: var(--rust); }
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle label:has(:checked) {
+  background: var(--rust);
+  color: #fff8f1;
+}
 
 .quality {
   min-width: 200px;
@@ -197,7 +207,7 @@ label.field {
   accent-color: var(--rust);
 }
 
-.quality.is-hidden { display: none; }
+.quality[hidden] { display: none !important; }
 
 .row {
   display: flex;
@@ -290,8 +300,8 @@ input:focus-visible {
   width: 64px;
   height: 64px;
   border-radius: 8px;
-  border: 1px solid var(--rule);
-  background: #0c0a08;
+  border: 1px solid #5a5146;
+  background: #2a241d;
   object-fit: cover;
 }
 

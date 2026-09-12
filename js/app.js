@@ -86,7 +86,9 @@
   }
 
   function syncQualityVisibility() {
-    els.qualityWrap.classList.toggle("is-hidden", format() === "png");
+    var png = format() === "png";
+    els.qualityWrap.hidden = png;
+    els.quality.disabled = png;
     els.qualityValue.textContent = String(els.quality.value);
   }
 
