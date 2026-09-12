@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HEIC Save As — convert iPhone HEIC to JPG or PNG</title>
+  <meta name="description" content="Free client-side HEIC to JPG or PNG converter. Drop iPhone photos, Save as. No account. No upload. No Stripe.">
+  <meta name="theme-color" content="#100e0c">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="masthead">
+      <div>
+        <div class="kicker"><a href="https://28to3.me">28to3</a> · client-side · no account</div>
+        <h1 class="mark">HEIC Save As</h1>
+      </div>
+      <div class="kicker">Stays in the browser</div>
+    </header>
+
+    <p class="deck" id="main">
+      Drop one or more iPhone <strong>.heic / .heif</strong> photos, pick JPG or PNG, then
+      <strong>Save as</strong>. Conversion runs in this tab with
+      <a href="https://github.com/alexcorvi/heic2any">heic2any</a> from a CDN.
+      Nothing is uploaded. No account. No Stripe.
+    </p>
+
+    <div id="unsupported" class="banner" hidden></div>
+
+    <section class="panel" aria-labelledby="convert-title">
+      <h2 id="convert-title">Convert</h2>
+      <p class="help">
+        Built for iPhone Camera photos. On iPhone, pick from <strong>Files</strong> so the original HEIC is used —
+        the Photos picker often hands the browser a JPEG already.
+      </p>
+
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Drop HEIC files or click to choose">
+        <div>
+          <strong>Drop .heic / .heif here</strong>
+          <p>or click to choose. Multiple files are fine.</p>
+        </div>
+        <input id="picker" type="file" accept=".heic,.heif,.HEIC,.HEIF,image/heic,image/heif" multiple>
+      </div>
+
+      <div class="controls">
+        <fieldset>
+          <legend>Format</legend>
+          <div class="toggle">
+            <label><input type="radio" name="format" value="jpg" checked> JPG</label>
+            <label><input type="radio" name="format" value="png"> PNG</label>
+          </div>
+        </fieldset>
+        <div class="quality" id="quality-wrap">
+          <label class="field" for="quality">JPG quality <span id="quality-value">92</span>%</label>
+          <input id="quality" type="range" min="50" max="100" value="92" step="1">
+        </div>
+      </div>
+
+      <div class="row">
+        <button type="button" class="primary" id="save-all" disabled>Save all</button>
+        <button type="button" id="clear" disabled>Clear</button>
+      </div>
+
+      <p class="status" id="status" role="status">Loading converter…</p>
+      <ul class="files" id="files" aria-live="polite"></ul>
+    </section>
+
+    <footer class="cta">
+      HEIC Save As is free, static, and stays on-device. No Stripe. No accounts.
+      Soft next steps on <a href="https://28to3.me">28to3.me</a>.
+      Live copy: <a href="https://28to3.me/apps/heic-save-as.html">28to3.me/apps/heic-save-as.html</a>.
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="js/lib.js"></script>
+  <script>
+    window.HeicSaveAsLib = {
+      isHeicFile: isHeicFile,
+      outputName: outputName,
+      formatBytes: formatBytes,
+      jpegQuality: jpegQuality,
+      browserSupported: browserSupported,
+      uniqueKey: uniqueKey
+    };
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>
